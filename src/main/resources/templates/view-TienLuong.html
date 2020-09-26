@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/main-layout1}" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/layout.css" />
+</head>
+<body>
+	<article layout:fragment="content">
+		<div class="container">
+		<form th:action="${ngay}" >
+		<label>ngaydau</label>>
+		<input type="text" name="ngaydau" th:value="${ngaydau}" placeholder="ngay //thang//nam" >
+		<label>ngaycuoi</label>>
+		<input type="text" name="ngaycuoi" th:value="${ngaycuoi}"  placeholder="ngay // thang // nam">
+		<button type="submit">nhan day</button>
+		</form>
+	 	<h2>List tien luong</h2>
+			
+
+
+
+
+			<nav class="row justify-content-center wow fadeIn"
+				data-wow-delay="0.2s">
+				<div class="row">
+					<form action="/TKLoaiDT/xoanhieu">
+
+						<table border="1" width="945" height="auto">
+							<caption align="top" class="title" style="color: green;">
+								List Users</caption>
+							<thead>
+								<tr>
+									<th>count</th>
+
+									<th>id</th>
+
+									<th>nhanvien</th>
+									<th>luong</th>
+									<th>luongthuc</th>
+									<th>songay di lam</th>
+									<th>ngaydauthang</th>
+									<th>ngaycuoithang</th>
+
+
+
+									<th>Edit</th>
+									<th>Xoa</th>
+
+									<th><button type="submit">Xoa nhieu</button></th>
+
+
+
+
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="contact,iterStat : ${tienluong}">
+									<td th:text="${iterStat.count}"></td>
+
+
+									<td th:text="${contact.id}"></td>
+									<td><div th:each="nv : ${nhanvien}">
+											<p th:if="${contact.idemployee==nv.id}" th:text="${nv.name}">
+										</div></td>
+									<td th:text="${contact.luong}"></td>
+									<td th:text="${contact.luongthuc}"></td>
+								    <td th:text="${contact.songay}"></td>
+									<td th:text="${contact.ngaydauthang}"></td>
+									<td th:text="${contact.ngaycuoithang}"></td>
+									
+
+									
+							
+								<!-- <td th:text="${chucvu.get(contact.chucvuid).getTencv()}"></td>-->
+
+									<td><a th:href="@{'/TKLoaiDT/edit/'+${contact.id}}"><span
+											class="glyphicon glyphicon-pencil"></span></a></td>
+									<td><a th:href="@{'/TKLoaiDT/delete/'+${contact.id}}"><span
+											class="glyphicon glyphicon-trash"></span></a></td>
+									<td><input type="checkbox" name="xoa[]"
+										th:value="${contact.id}"></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+
+
+			</nav>
+			
+
+		</div>
+
+
+
+
+
+	</article>
+</body>
+</html>
